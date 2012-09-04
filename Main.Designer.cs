@@ -29,30 +29,31 @@ namespace Googlebook
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Shell = new DevComponents.DotNetBar.Metro.MetroShell();
-            this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
+            this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.tabPanelLink = new DevComponents.DotNetBar.Metro.MetroTabPanel();
+            this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.tabLogin = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.tabLink = new DevComponents.DotNetBar.Metro.MetroTabItem();
+            this.tabSync = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
             this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
             this.lbState = new DevComponents.DotNetBar.LabelItem();
-            this.tabSync = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.Shell.SuspendLayout();
             this.SuspendLayout();
             // 
             // Shell
             // 
-            this.Shell.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.Shell.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
             this.Shell.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.Shell.CaptionVisible = true;
+            this.Shell.Controls.Add(this.tabPanelLogin);
             this.Shell.Controls.Add(this.tabPanelSync);
             this.Shell.Controls.Add(this.tabPanelLink);
-            this.Shell.Controls.Add(this.tabPanelLogin);
             this.Shell.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Shell.ForeColor = System.Drawing.Color.Black;
             this.Shell.HelpButtonText = null;
@@ -83,28 +84,28 @@ namespace Googlebook
             this.Shell.TabStripFont = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shell.Text = "Shell";
             // 
-            // tabPanelLogin
+            // tabPanelSync
             // 
-            this.tabPanelLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.tabPanelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
-            this.tabPanelLogin.Name = "tabPanelLogin";
-            this.tabPanelLogin.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabPanelLogin.Size = new System.Drawing.Size(624, 343);
-            // 
-            // 
-            // 
-            this.tabPanelLogin.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelSync.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.tabPanelSync.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPanelSync.Location = new System.Drawing.Point(0, 51);
+            this.tabPanelSync.Name = "tabPanelSync";
+            this.tabPanelSync.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.tabPanelSync.Size = new System.Drawing.Size(624, 343);
             // 
             // 
             // 
-            this.tabPanelLogin.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelSync.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             // 
             // 
             // 
-            this.tabPanelLogin.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tabPanelLogin.TabIndex = 1;
-            this.tabPanelLogin.Visible = false;
+            this.tabPanelSync.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelSync.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelSync.TabIndex = 3;
+            this.tabPanelSync.Visible = false;
             // 
             // tabPanelLink
             // 
@@ -129,8 +130,31 @@ namespace Googlebook
             this.tabPanelLink.TabIndex = 2;
             this.tabPanelLink.Visible = false;
             // 
+            // tabPanelLogin
+            // 
+            this.tabPanelLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.tabPanelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
+            this.tabPanelLogin.Name = "tabPanelLogin";
+            this.tabPanelLogin.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.tabPanelLogin.Size = new System.Drawing.Size(624, 343);
+            // 
+            // 
+            // 
+            this.tabPanelLogin.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelLogin.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelLogin.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelLogin.TabIndex = 1;
+            // 
             // tabLogin
             // 
+            this.tabLogin.Checked = true;
             this.tabLogin.Name = "tabLogin";
             this.tabLogin.Panel = this.tabPanelLogin;
             this.tabLogin.Text = "&LOGIN";
@@ -141,14 +165,20 @@ namespace Googlebook
             this.tabLink.Panel = this.tabPanelLink;
             this.tabLink.Text = "&LINK";
             // 
+            // tabSync
+            // 
+            this.tabSync.Name = "tabSync";
+            this.tabSync.Panel = this.tabPanelSync;
+            this.tabSync.Text = "&SYNC";
+            // 
             // Style
             // 
             this.Style.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
-            this.Style.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255))))), System.Drawing.Color.FromArgb(((int)(((byte)(69)))), ((int)(((byte)(150)))), ((int)(((byte)(232))))));
+            this.Style.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(185)))), ((int)(((byte)(238))))));
             // 
             // status
             // 
-            this.status.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.status.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
@@ -170,35 +200,6 @@ namespace Googlebook
             this.lbState.Name = "lbState";
             this.lbState.Text = "READY";
             // 
-            // tabSync
-            // 
-            this.tabSync.Checked = true;
-            this.tabSync.Name = "tabSync";
-            this.tabSync.Panel = this.tabPanelSync;
-            this.tabSync.Text = "&SYNC";
-            // 
-            // tabPanelSync
-            // 
-            this.tabPanelSync.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.tabPanelSync.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPanelSync.Location = new System.Drawing.Point(0, 51);
-            this.tabPanelSync.Name = "tabPanelSync";
-            this.tabPanelSync.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabPanelSync.Size = new System.Drawing.Size(624, 343);
-            // 
-            // 
-            // 
-            this.tabPanelSync.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelSync.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelSync.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tabPanelSync.TabIndex = 3;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,6 +208,7 @@ namespace Googlebook
             this.Controls.Add(this.status);
             this.Controls.Add(this.Shell);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Main";
             this.Text = "Googlebook";
             this.Shell.ResumeLayout(false);

@@ -120,4 +120,29 @@
   <metadata name="Style.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAEBAAAAEAIABoBAAAFgAAACgAAAAQAAAAIAAAAAEAIAAAAAAAQAQAABMLAAATCwAAAAAAAAAA
+        AADuuQDc7rkA7e65AO3uuQDt7rkA7e65AO3uuQDt7rkA7e65AO3uuQDt7rkA7e65AO3uuQDt7rkA7e65
+        AO3uuQDc7rkA8u65AP/uuQD/8MAY//HHM//zzkv/9dVm//XVZv/11Wb/9dVm//PMRf/xxzP/8MAY/+65
+        AP/uuQD/7rkA8u65AO3uuQD/+OSc////////////////////////////////////////////////////
+        ///334r/7rkA/+65AO3uuQDt7rsG////////////////////////////////////////////////////
+        /////////v32/+65AP/uuQDt7rkA7e65AP/889X/////////////////////////////////////////
+        //////////////vvw//uuQD/7rkA7e65AO3uuQD/8cYw//345///////////////////////////////
+        //////////////334f/wwyT/7rkA/+65AO3uuQDt7rkA/+65AP/wwiH/+OKW//788///////////////
+        /////////vvw//jhkP/wwBj/7rkA/+65AP/uuQDt7rkA7e65AP/uuQD/7rkA/+65AP/uuwb/8ccz//PP
+        Uf/zzk7/8ccz/+66A//uuQD/7rkA/+65AP/uuQD/7rkA7e65AO3uuQD/7rkA/+65AP/uuQD/778V//nm
+        pf///fn//vzz//jilv/vvAz/7rkA/+65AP/uuQD/7rkA/+65AO3uuQDt7rkA/+65AP/uuQD/7roD//vu
+        wP//////////////////////+eWf/+65AP/uuQD/7rkA/+65AP/uuQDt7rkA7e65AP/uuQD/7rkA//HH
+        M//////////////////////////////+/P/vvxX/7rkA/+65AP/uuQD/7rkA7e65AO3uuQD/7rkA/+65
+        AP/yyj//////////////////////////////////8MEe/+65AP/uuQD/7rkA/+65AO3uuQDt7rkA/+65
+        AP/uuQD/77sJ//345P///////////////////////PLP/+65AP/uuQD/7rkA/+65AP/uuQDt7rkA7e65
+        AP/uuQD/7rkA/+65AP/yyj///vnq/////////////fbe//HFKv/uuQD/7rkA/+65AP/uuQD/7rkA7e65
+        APLuuQD/7rkA/+65AP/uuQD/7rkA/+++Ev/zzUj/8stC/++8DP/uuQD/7rkA/+65AP/uuQD/7rkA/+65
+        APLuuQDc7rkA7e65AO3uuQDt7rkA7e65AO3uuQDt7rkA7e65AO3uuQDt7rkA7e65AO3uuQDt7rkA7e65
+        AO3uuQDcAABSRQAATUQAAABQAABDRQAAT1IAAERFAABJRgAAUj0AAEQ2AABGYQAAbHkAADYgAABkZQAA
+        MTAAAHRlAABpbg==
+</value>
+  </data>
 </root>
