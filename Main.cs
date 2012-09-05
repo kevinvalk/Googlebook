@@ -39,6 +39,7 @@ namespace Googlebook
             // Reset all
             browser.Visible = false;
             pGoogleLogin.Show();
+			lbLoginComplete.Hide();
 
             // Set to new settings
             step.CurrentStep = (int)state;
@@ -69,6 +70,8 @@ namespace Googlebook
                     break;
                 case State.LoginDone:
                     pGoogleLogin.Hide();
+		            lbLoginComplete.Show();
+					lbLoginComplete.BringToFront();
                     break;
             }
         }
