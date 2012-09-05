@@ -14,11 +14,11 @@ namespace Googlebook
 {
     public partial class Main : DevComponents.DotNetBar.Metro.MetroAppForm
     {
-        private ContactManager cm = new ContactManager();
-        private Properties.Settings settings = Properties.Settings.Default;
+        private readonly ContactManager _cm = new ContactManager();
+        private readonly Properties.Settings _settings = Properties.Settings.Default;
 
         // Custom fields
-        private bool modLogin;
+        private bool _modLogin;
 
         public Main()
         {
@@ -27,35 +27,48 @@ namespace Googlebook
             browser.BringToFront();
 
             // Load the settings
-            tbUser.Text = settings.googleUser;
-            tbPassword.Text = settings.googlePass;
+            tbUser.Text = _settings.googleUser;
+            tbPassword.Text = _settings.googlePass;
 
             // Call default
-            LoginStep(State.GoogleLogin);
-
-            // Do automating
-            if (settings.googleAuto)
-                BGoogleLoginClick(null, null);
+            LoginStep(State.GoogleLogin);            
         }
 
-        private void LoginStep(State state)
+        private void LoginStep(State state, bool automation = true)
         {
             // Reset all
             browser.Visible = false;
+            pGoogleLogin.Show();
 
             // Set to new settings
             step.CurrentStep = (int)state;
             switch(state)
             {
                 case State.GoogleLogin:
+					if (automation && _settings.googleAuto)
+                        BGoogleLoginClick(null, null);
                     break;
                 case State.FacebookLogin:
-                    browser.Visible = true;
-                    browser.Navigate(Config.facebookLoginUrl);
-                    modLogin = true;
+                    // Check if we can reuse the token
+					if (automation && _settings.facebookExpirationTime > DateTime.Now)
+					{
+						if (_settings.facebookInitTime.AddDays(1) < DateTime.Now)
+							_cm.GetFacebookExtended(_settings.facebookToken);
+						else
+							if (_cm.LoginFacebook(_settings.facebookToken))
+								LoginStep(State.LoginDone);
+							else
+								LoginStep(State.FacebookLogin, false);
+					}
+                    else
+                    {
+                        browser.Visible = true;
+                        browser.Navigate(Config.facebookLoginUrl);
+                        _modLogin = true;   
+                    }
                     break;
                 case State.LoginDone:
-
+                    pGoogleLogin.Hide();
                     break;
             }
         }
@@ -63,17 +76,17 @@ namespace Googlebook
         private void BGoogleLoginClick(object sender, EventArgs e)
         {
             // Save the settings
-            settings.googleUser = tbUser.Text;
-            settings.googlePass = tbPassword.Text;
-            settings.Save();
+            _settings.googleUser = tbUser.Text;
+            _settings.googlePass = tbPassword.Text;
+            _settings.Save();
 
 
-            if(cm.LoginGoogle(tbUser.Text, tbPassword.Text))
+            if(_cm.LoginGoogle(tbUser.Text, tbPassword.Text))
             {
                 lbState.Text = "SUCCESS";
                 LoginStep(State.FacebookLogin);
-                settings.googleAuto = true;
-                settings.Save();
+                _settings.googleAuto = true;
+                _settings.Save();
             }
             else
             {
@@ -85,13 +98,13 @@ namespace Googlebook
         private void browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
             //Modify the login page a bit so it better fits the design
-            if(modLogin)
+            if(_modLogin)
             {
                 browser.Document.GetElementById("pagelet_bluebar").OuterHtml = "";
                 browser.Document.GetElementById("pageFooter").OuterHtml = "";
                 browser.Document.Window.ScrollTo(40,100);
                 browser.Document.Body.Style = "overflow: hidden;";
-                modLogin = false;
+                _modLogin = false;
                 return;
             }
 
@@ -103,7 +116,8 @@ namespace Googlebook
                 Debug.Assert(query.Length == 3);
                 if (int.TryParse(query[2], out timeToLive))
                 {
-                    cm.LoginFacebook(query[1], timeToLive);
+                    // Lets get our extended token and then login with that
+                    _cm.GetFacebookExtended(query[1]);
                     LoginStep(State.LoginDone);
                 }
                 else
@@ -117,7 +131,7 @@ namespace Googlebook
         // Events
         private void TabLinkClick(object sender, EventArgs e)
         {
-            var contacts = cm.GetGoogleUnlinkedContacts();
+            var contacts = _cm.GetGoogleUnlinkedContacts();
             foreach (var contact in contacts)
             {
                 pUnlinkedContacts.AddItem(contact.ContactEntry.Name.FullName);

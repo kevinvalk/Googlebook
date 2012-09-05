@@ -58,5 +58,39 @@ namespace Googlebook.Properties {
                 this["googleAuto"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string facebookToken {
+            get {
+                return ((string)(this["facebookToken"]));
+            }
+            set {
+                this["facebookToken"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime facebookExpirationTime {
+            get {
+                return ((global::System.DateTime)(this["facebookExpirationTime"]));
+            }
+            set {
+                this["facebookExpirationTime"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.DateTime facebookInitTime {
+            get {
+                return ((global::System.DateTime)(this["facebookInitTime"]));
+            }
+            set {
+                this["facebookInitTime"] = value;
+            }
+        }
     }
 }

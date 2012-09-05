@@ -11,13 +11,14 @@ namespace Googlebook
 {
     class ContactManager
     {
-        private static int maxNo = 5000;
-        private FacebookClient facebook;
-        private ContactsRequest google;
+        private readonly Properties.Settings _settings = Properties.Settings.Default;
+        private const int MaxNo = 5000;
+        private FacebookClient _facebook;
+        private ContactsRequest _google;
 
         public ContactManager()
         {
-            facebook = new FacebookClient();
+            _facebook = new FacebookClient();
 
             // Defaults
             IsGoogleLogin = false;
@@ -27,12 +28,10 @@ namespace Googlebook
         {
             try
             {
-                RequestSettings settings = new RequestSettings(Config.appName, user, password);
-                settings.Maximum = maxNo;
-                settings.AutoPaging = true;
-                google = new ContactsRequest(settings);
+                var settings = new RequestSettings(Config.appName, user, password){Maximum = MaxNo, AutoPaging = true};
+                _google = new ContactsRequest(settings);
 
-                IsGoogleLogin = (google.GetContacts().PageSize > 0);
+                IsGoogleLogin = (_google.GetContacts().PageSize > 0);
 
                 return IsGoogleLogin;
             }
@@ -44,11 +43,11 @@ namespace Googlebook
 
         public List<Contact> GetGoogleContacts(bool filter = false)
         {
-            if(google == null)
+            if(_google == null)
                 return new List<Contact>();
 
-            var feed = google.GetContacts();
-            feed.Maximum = maxNo;
+            var feed = _google.GetContacts();
+            feed.Maximum = MaxNo;
 
             var filtered = new List<Contact>();
 
@@ -86,14 +85,31 @@ namespace Googlebook
             return false;
         }
 
-        public bool LoginFacebook(string token, int ttl)
+        public bool LoginFacebook(string token)
         {
-            dynamic extendedToken = facebook.Get(Config.facebookExtendedToken + token);
-            facebook = new FacebookClient(extendedToken.access_token){AppId = Config.appId, AppSecret = Config.appSecret};
-            return true;
+            _facebook = new FacebookClient(token) { AppId = Config.appId, AppSecret = Config.appSecret };
+
+            IsFacebookLogin = (_facebook != null);
+            return IsFacebookLogin;
+        }
+
+        public bool GetFacebookExtended(string token)
+        {
+            dynamic extendedToken = _facebook.Get(Config.facebookExtendedToken + token);
+            if (LoginFacebook(extendedToken.access_token))
+            {
+				_settings.facebookToken = extendedToken.access_token;
+                _settings.facebookInitTime = DateTime.Now;
+                _settings.facebookExpirationTime = DateTime.Now;
+                _settings.facebookExpirationTime = _settings.facebookExpirationTime.AddMinutes(extendedToken.expires);
+                _settings.Save();
+                return true;
+            }
+            return false;
         }
 
         // Properties
         public bool IsGoogleLogin { get; private set; }
+        public bool IsFacebookLogin { get; private set; }
     }
 }
