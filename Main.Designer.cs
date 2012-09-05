@@ -46,6 +46,8 @@ namespace Googlebook
             this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.lHeader = new DevComponents.DotNetBar.LabelX();
+            this.browser = new System.Windows.Forms.WebBrowser();
             this.Shell.SuspendLayout();
             this.tabPanelLogin.SuspendLayout();
             this.SuspendLayout();
@@ -71,7 +73,7 @@ namespace Googlebook
             this.Shell.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
             this.Shell.Location = new System.Drawing.Point(0, 1);
             this.Shell.Name = "Shell";
-            this.Shell.Size = new System.Drawing.Size(624, 394);
+            this.Shell.Size = new System.Drawing.Size(883, 460);
             this.Shell.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
             this.Shell.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
             this.Shell.SystemText.QatAddItemText = "&Add to Quick Access Toolbar";
@@ -94,6 +96,8 @@ namespace Googlebook
             // tabPanelLogin
             // 
             this.tabPanelLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.tabPanelLogin.Controls.Add(this.browser);
+            this.tabPanelLogin.Controls.Add(this.lHeader);
             this.tabPanelLogin.Controls.Add(this.labelX2);
             this.tabPanelLogin.Controls.Add(this.labelX1);
             this.tabPanelLogin.Controls.Add(this.step);
@@ -104,7 +108,7 @@ namespace Googlebook
             this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
             this.tabPanelLogin.Name = "tabPanelLogin";
             this.tabPanelLogin.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabPanelLogin.Size = new System.Drawing.Size(624, 343);
+            this.tabPanelLogin.Size = new System.Drawing.Size(883, 409);
             // 
             // 
             // 
@@ -229,9 +233,9 @@ namespace Googlebook
             this.status.ForeColor = System.Drawing.Color.Black;
             this.status.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
             this.lbState});
-            this.status.Location = new System.Drawing.Point(0, 374);
+            this.status.Location = new System.Drawing.Point(0, 440);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(624, 21);
+            this.status.Size = new System.Drawing.Size(883, 21);
             this.status.TabIndex = 1;
             this.status.Text = "Status";
             // 
@@ -261,17 +265,18 @@ namespace Googlebook
             this.step.Dock = System.Windows.Forms.DockStyle.Top;
             this.step.Location = new System.Drawing.Point(3, 0);
             this.step.Name = "step";
-            this.step.Size = new System.Drawing.Size(618, 4);
+            this.step.Size = new System.Drawing.Size(877, 4);
             this.step.StepCount = 3;
             this.step.TabIndex = 6;
-            this.step.Text = "stepIndicator1";
             // 
             // labelX1
             // 
+            this.labelX1.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
             this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.ForeColor = System.Drawing.Color.Black;
             this.labelX1.Location = new System.Drawing.Point(153, 100);
             this.labelX1.Name = "labelX1";
             this.labelX1.Size = new System.Drawing.Size(75, 23);
@@ -280,25 +285,58 @@ namespace Googlebook
             // 
             // labelX2
             // 
+            this.labelX2.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
             this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.ForeColor = System.Drawing.Color.Black;
             this.labelX2.Location = new System.Drawing.Point(153, 127);
             this.labelX2.Name = "labelX2";
             this.labelX2.Size = new System.Drawing.Size(75, 23);
             this.labelX2.TabIndex = 8;
             this.labelX2.Text = "Password";
             // 
+            // lHeader
+            // 
+            this.lHeader.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.lHeader.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lHeader.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lHeader.ForeColor = System.Drawing.Color.Black;
+            this.lHeader.Location = new System.Drawing.Point(153, 48);
+            this.lHeader.Name = "lHeader";
+            this.lHeader.Size = new System.Drawing.Size(273, 46);
+            this.lHeader.TabIndex = 9;
+            this.lHeader.Text = "Google login";
+            this.lHeader.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // browser
+            // 
+            this.browser.AllowWebBrowserDrop = false;
+            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser.IsWebBrowserContextMenuEnabled = false;
+            this.browser.Location = new System.Drawing.Point(3, 4);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.ScrollBarsEnabled = false;
+            this.browser.Size = new System.Drawing.Size(877, 402);
+            this.browser.TabIndex = 10;
+            this.browser.Visible = false;
+            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 396);
+            this.ClientSize = new System.Drawing.Size(884, 462);
             this.Controls.Add(this.status);
             this.Controls.Add(this.Shell);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MinimumSize = new System.Drawing.Size(884, 462);
             this.Name = "Main";
             this.Text = "Googlebook";
             this.Shell.ResumeLayout(false);
@@ -326,6 +364,8 @@ namespace Googlebook
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.Controls.StepIndicator step;
+        private DevComponents.DotNetBar.LabelX lHeader;
+        private System.Windows.Forms.WebBrowser browser;
 
     }
 }
