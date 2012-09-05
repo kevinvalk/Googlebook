@@ -32,6 +32,12 @@ namespace Googlebook
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Shell = new DevComponents.DotNetBar.Metro.MetroShell();
             this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
+            this.browser = new System.Windows.Forms.WebBrowser();
+            this.lHeader = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
+            this.tbPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbUser = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.bGoogleLogin = new DevComponents.DotNetBar.ButtonX();
             this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
@@ -42,12 +48,6 @@ namespace Googlebook
             this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
             this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
             this.lbState = new DevComponents.DotNetBar.LabelItem();
-            this.tbPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
-            this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
-            this.labelX1 = new DevComponents.DotNetBar.LabelX();
-            this.labelX2 = new DevComponents.DotNetBar.LabelX();
-            this.lHeader = new DevComponents.DotNetBar.LabelX();
-            this.browser = new System.Windows.Forms.WebBrowser();
             this.Shell.SuspendLayout();
             this.tabPanelLogin.SuspendLayout();
             this.SuspendLayout();
@@ -122,6 +122,89 @@ namespace Googlebook
             // 
             this.tabPanelLogin.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tabPanelLogin.TabIndex = 1;
+            // 
+            // browser
+            // 
+            this.browser.AllowWebBrowserDrop = false;
+            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser.IsWebBrowserContextMenuEnabled = false;
+            this.browser.Location = new System.Drawing.Point(3, 4);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.ScrollBarsEnabled = false;
+            this.browser.Size = new System.Drawing.Size(877, 402);
+            this.browser.TabIndex = 10;
+            this.browser.Visible = false;
+            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
+            // 
+            // lHeader
+            // 
+            this.lHeader.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.lHeader.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.lHeader.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lHeader.ForeColor = System.Drawing.Color.Black;
+            this.lHeader.Location = new System.Drawing.Point(153, 48);
+            this.lHeader.Name = "lHeader";
+            this.lHeader.Size = new System.Drawing.Size(273, 46);
+            this.lHeader.TabIndex = 9;
+            this.lHeader.Text = "Google login";
+            this.lHeader.TextAlignment = System.Drawing.StringAlignment.Center;
+            // 
+            // labelX2
+            // 
+            this.labelX2.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.ForeColor = System.Drawing.Color.Black;
+            this.labelX2.Location = new System.Drawing.Point(153, 127);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 8;
+            this.labelX2.Text = "Password";
+            // 
+            // labelX1
+            // 
+            this.labelX1.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.ForeColor = System.Drawing.Color.Black;
+            this.labelX1.Location = new System.Drawing.Point(153, 100);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 7;
+            this.labelX1.Text = "Username";
+            // 
+            // step
+            // 
+            this.step.Dock = System.Windows.Forms.DockStyle.Top;
+            this.step.Location = new System.Drawing.Point(3, 0);
+            this.step.Name = "step";
+            this.step.Size = new System.Drawing.Size(877, 4);
+            this.step.StepCount = 3;
+            this.step.TabIndex = 6;
+            // 
+            // tbPassword
+            // 
+            this.tbPassword.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.tbPassword.Border.Class = "TextBoxBorder";
+            this.tbPassword.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbPassword.ForeColor = System.Drawing.Color.Black;
+            this.tbPassword.Location = new System.Drawing.Point(234, 128);
+            this.tbPassword.MaxLength = 50;
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(192, 22);
+            this.tbPassword.TabIndex = 5;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // tbUser
             // 
@@ -243,89 +326,6 @@ namespace Googlebook
             // 
             this.lbState.Name = "lbState";
             this.lbState.Text = "READY";
-            // 
-            // tbPassword
-            // 
-            this.tbPassword.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.tbPassword.Border.Class = "TextBoxBorder";
-            this.tbPassword.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tbPassword.ForeColor = System.Drawing.Color.Black;
-            this.tbPassword.Location = new System.Drawing.Point(234, 128);
-            this.tbPassword.MaxLength = 50;
-            this.tbPassword.Name = "tbPassword";
-            this.tbPassword.Size = new System.Drawing.Size(192, 22);
-            this.tbPassword.TabIndex = 5;
-            this.tbPassword.UseSystemPasswordChar = true;
-            // 
-            // step
-            // 
-            this.step.Dock = System.Windows.Forms.DockStyle.Top;
-            this.step.Location = new System.Drawing.Point(3, 0);
-            this.step.Name = "step";
-            this.step.Size = new System.Drawing.Size(877, 4);
-            this.step.StepCount = 3;
-            this.step.TabIndex = 6;
-            // 
-            // labelX1
-            // 
-            this.labelX1.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX1.ForeColor = System.Drawing.Color.Black;
-            this.labelX1.Location = new System.Drawing.Point(153, 100);
-            this.labelX1.Name = "labelX1";
-            this.labelX1.Size = new System.Drawing.Size(75, 23);
-            this.labelX1.TabIndex = 7;
-            this.labelX1.Text = "Username";
-            // 
-            // labelX2
-            // 
-            this.labelX2.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.labelX2.ForeColor = System.Drawing.Color.Black;
-            this.labelX2.Location = new System.Drawing.Point(153, 127);
-            this.labelX2.Name = "labelX2";
-            this.labelX2.Size = new System.Drawing.Size(75, 23);
-            this.labelX2.TabIndex = 8;
-            this.labelX2.Text = "Password";
-            // 
-            // lHeader
-            // 
-            this.lHeader.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.lHeader.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.lHeader.Font = new System.Drawing.Font("Segoe UI", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lHeader.ForeColor = System.Drawing.Color.Black;
-            this.lHeader.Location = new System.Drawing.Point(153, 48);
-            this.lHeader.Name = "lHeader";
-            this.lHeader.Size = new System.Drawing.Size(273, 46);
-            this.lHeader.TabIndex = 9;
-            this.lHeader.Text = "Google login";
-            this.lHeader.TextAlignment = System.Drawing.StringAlignment.Center;
-            // 
-            // browser
-            // 
-            this.browser.AllowWebBrowserDrop = false;
-            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browser.IsWebBrowserContextMenuEnabled = false;
-            this.browser.Location = new System.Drawing.Point(3, 4);
-            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browser.Name = "browser";
-            this.browser.ScrollBarsEnabled = false;
-            this.browser.Size = new System.Drawing.Size(877, 402);
-            this.browser.TabIndex = 10;
-            this.browser.Visible = false;
-            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
             // 
             // Main
             // 

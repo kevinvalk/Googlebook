@@ -41,6 +41,12 @@ namespace Googlebook
             }
         }
 
+        public bool loginFacebook(string token, int ttl)
+        {
+
+            return true;
+        }
+
         // Properties
         private bool isGoogleLogin;
 

@@ -13,4 +13,11 @@ namespace Googlebook
         public static string scope = "email,user_birthday,user_location,user_website,friends_birthday,friends_location,friends_website";
         public static string facebookLoginUrl = "https://www.facebook.com/dialog/oauth?client_id=" + appId + "&redirect_uri=https://www.facebook.com/connect/login_success.html&response_type=token&scope=" + scope;
     }
+
+    public enum State
+    {
+        GOOGLE_LOGIN = 1,
+        FACEBOOK_LOGIN = 2,
+        LOGIN_DONE = 3
+    }
 }
