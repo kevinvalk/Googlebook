@@ -41,6 +41,7 @@ namespace Googlebook
 			this.bGoogleLogin = new DevComponents.DotNetBar.ButtonX();
 			this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
 			this.browser = new System.Windows.Forms.WebBrowser();
+			this.lbLoginComplete = new DevComponents.DotNetBar.LabelX();
 			this.tabPanelLink = new DevComponents.DotNetBar.Metro.MetroTabPanel();
 			this.itemPanel2 = new DevComponents.DotNetBar.ItemPanel();
 			this.pUnlinkedContacts = new DevComponents.DotNetBar.ItemPanel();
@@ -51,7 +52,7 @@ namespace Googlebook
 			this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
 			this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
 			this.lbState = new DevComponents.DotNetBar.LabelItem();
-			this.lbLoginComplete = new DevComponents.DotNetBar.LabelX();
+			this.metroTileItem1 = new DevComponents.DotNetBar.Metro.MetroTileItem();
 			this.Shell.SuspendLayout();
 			this.tabPanelLogin.SuspendLayout();
 			this.pGoogleLogin.SuspendLayout();
@@ -79,6 +80,7 @@ namespace Googlebook
 			this.Shell.KeyTipsFont = new System.Drawing.Font("Tahoma", 7F);
 			this.Shell.Location = new System.Drawing.Point(0, 1);
 			this.Shell.Name = "Shell";
+			this.Shell.Padding = new System.Windows.Forms.Padding(0, 0, 0, 21);
 			this.Shell.Size = new System.Drawing.Size(883, 460);
 			this.Shell.SystemText.MaximizeRibbonText = "&Maximize the Ribbon";
 			this.Shell.SystemText.MinimizeRibbonText = "Mi&nimize the Ribbon";
@@ -110,7 +112,7 @@ namespace Googlebook
 			this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
 			this.tabPanelLogin.Name = "tabPanelLogin";
 			this.tabPanelLogin.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.tabPanelLogin.Size = new System.Drawing.Size(883, 409);
+			this.tabPanelLogin.Size = new System.Drawing.Size(883, 388);
 			// 
 			// 
 			// 
@@ -140,7 +142,7 @@ namespace Googlebook
 			this.pGoogleLogin.Controls.Add(this.bGoogleLogin);
 			this.pGoogleLogin.Location = new System.Drawing.Point(307, 103);
 			this.pGoogleLogin.Name = "pGoogleLogin";
-			this.pGoogleLogin.Size = new System.Drawing.Size(287, 203);
+			this.pGoogleLogin.Size = new System.Drawing.Size(287, 182);
 			// 
 			// 
 			// 
@@ -284,10 +286,28 @@ namespace Googlebook
 			this.browser.MinimumSize = new System.Drawing.Size(20, 20);
 			this.browser.Name = "browser";
 			this.browser.ScrollBarsEnabled = false;
-			this.browser.Size = new System.Drawing.Size(877, 406);
+			this.browser.Size = new System.Drawing.Size(877, 385);
 			this.browser.TabIndex = 10;
 			this.browser.Visible = false;
 			this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
+			// 
+			// lbLoginComplete
+			// 
+			this.lbLoginComplete.BackColor = System.Drawing.Color.White;
+			// 
+			// 
+			// 
+			this.lbLoginComplete.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.lbLoginComplete.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.lbLoginComplete.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.lbLoginComplete.ForeColor = System.Drawing.Color.Black;
+			this.lbLoginComplete.Location = new System.Drawing.Point(3, 0);
+			this.lbLoginComplete.Name = "lbLoginComplete";
+			this.lbLoginComplete.Size = new System.Drawing.Size(877, 385);
+			this.lbLoginComplete.TabIndex = 23;
+			this.lbLoginComplete.Text = "Logged in";
+			this.lbLoginComplete.TextAlignment = System.Drawing.StringAlignment.Center;
+			this.lbLoginComplete.Visible = false;
 			// 
 			// tabPanelLink
 			// 
@@ -298,7 +318,7 @@ namespace Googlebook
 			this.tabPanelLink.Location = new System.Drawing.Point(0, 51);
 			this.tabPanelLink.Name = "tabPanelLink";
 			this.tabPanelLink.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-			this.tabPanelLink.Size = new System.Drawing.Size(883, 409);
+			this.tabPanelLink.Size = new System.Drawing.Size(883, 388);
 			// 
 			// 
 			// 
@@ -326,14 +346,15 @@ namespace Googlebook
 			this.itemPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.itemPanel2.ForeColor = System.Drawing.Color.Black;
 			this.itemPanel2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-			this.itemPanel2.Location = new System.Drawing.Point(322, 0);
+			this.itemPanel2.Location = new System.Drawing.Point(284, 0);
 			this.itemPanel2.Name = "itemPanel2";
-			this.itemPanel2.Size = new System.Drawing.Size(558, 406);
+			this.itemPanel2.Size = new System.Drawing.Size(596, 385);
 			this.itemPanel2.TabIndex = 1;
 			this.itemPanel2.Text = "itemPanel2";
 			// 
 			// pUnlinkedContacts
 			// 
+			this.pUnlinkedContacts.AutoScroll = true;
 			this.pUnlinkedContacts.BackColor = System.Drawing.Color.White;
 			// 
 			// 
@@ -344,10 +365,11 @@ namespace Googlebook
 			this.pUnlinkedContacts.Dock = System.Windows.Forms.DockStyle.Left;
 			this.pUnlinkedContacts.FitButtonsToContainerWidth = true;
 			this.pUnlinkedContacts.ForeColor = System.Drawing.Color.Black;
+			this.pUnlinkedContacts.ItemTemplate = this.metroTileItem1;
 			this.pUnlinkedContacts.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
 			this.pUnlinkedContacts.Location = new System.Drawing.Point(3, 0);
 			this.pUnlinkedContacts.Name = "pUnlinkedContacts";
-			this.pUnlinkedContacts.Size = new System.Drawing.Size(319, 406);
+			this.pUnlinkedContacts.Size = new System.Drawing.Size(281, 385);
 			this.pUnlinkedContacts.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
 			this.pUnlinkedContacts.TabIndex = 0;
 			this.pUnlinkedContacts.Text = "itemPanel1";
@@ -426,21 +448,16 @@ namespace Googlebook
 			this.lbState.Name = "lbState";
 			this.lbState.Text = "READY";
 			// 
-			// lbLoginComplete
+			// metroTileItem1
+			// 
+			this.metroTileItem1.CheckBehavior = DevComponents.DotNetBar.Metro.eMetroTileCheckBehavior.LeftMouseButtonClick;
+			this.metroTileItem1.GlobalItem = false;
+			this.metroTileItem1.Name = "metroTileItem1";
+			this.metroTileItem1.TileColor = DevComponents.DotNetBar.Metro.eMetroTileColor.Azure;
 			// 
 			// 
 			// 
-			// 
-			this.lbLoginComplete.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.lbLoginComplete.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.lbLoginComplete.Font = new System.Drawing.Font("Segoe UI", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.lbLoginComplete.Location = new System.Drawing.Point(3, 0);
-			this.lbLoginComplete.Name = "lbLoginComplete";
-			this.lbLoginComplete.Size = new System.Drawing.Size(877, 406);
-			this.lbLoginComplete.TabIndex = 23;
-			this.lbLoginComplete.Text = "Logged in";
-			this.lbLoginComplete.TextAlignment = System.Drawing.StringAlignment.Center;
-			this.lbLoginComplete.Visible = false;
+			this.metroTileItem1.TileStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			// 
 			// Main
 			// 
@@ -487,6 +504,7 @@ namespace Googlebook
         private DevComponents.DotNetBar.ItemPanel pUnlinkedContacts;
         private DevComponents.DotNetBar.ItemPanel itemPanel2;
 		private DevComponents.DotNetBar.LabelX lbLoginComplete;
+		private DevComponents.DotNetBar.Metro.MetroTileItem metroTileItem1;
 
     }
 }

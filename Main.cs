@@ -72,6 +72,13 @@ namespace Googlebook
                     pGoogleLogin.Hide();
 		            lbLoginComplete.Show();
 					lbLoginComplete.BringToFront();
+
+					// Check for unlinked contacts
+					if (HasUnlinkedContacts())
+					{
+						Shell.SelectedTab = tabLink;
+					}
+
                     break;
             }
         }
@@ -131,14 +138,21 @@ namespace Googlebook
             }
         }
 
+		private bool HasUnlinkedContacts()
+		{
+			pUnlinkedContacts.Items.Clear();
+			var contacts = _cm.GetGoogleUnlinkedContacts();
+			foreach (var contact in contacts)
+			{
+				pUnlinkedContacts.AddItem(contact.ContactEntry.Name.FullName);
+			}
+			return (contacts.Count > 0);
+		}
+
         // Events
         private void TabLinkClick(object sender, EventArgs e)
         {
-            var contacts = _cm.GetGoogleUnlinkedContacts();
-            foreach (var contact in contacts)
-            {
-                pUnlinkedContacts.AddItem(contact.ContactEntry.Name.FullName);
-            }
+	        HasUnlinkedContacts();
         }
     }
 }
