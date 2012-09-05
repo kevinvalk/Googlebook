@@ -31,16 +31,23 @@ namespace Googlebook
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Shell = new DevComponents.DotNetBar.Metro.MetroShell();
+            this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
+            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.bGoogleLogin = new DevComponents.DotNetBar.ButtonX();
             this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.tabPanelLink = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.tabLogin = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.tabLink = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.tabSync = new DevComponents.DotNetBar.Metro.MetroTabItem();
             this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
             this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
             this.lbState = new DevComponents.DotNetBar.LabelItem();
+            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
+            this.labelX1 = new DevComponents.DotNetBar.LabelX();
+            this.labelX2 = new DevComponents.DotNetBar.LabelX();
             this.Shell.SuspendLayout();
+            this.tabPanelLogin.SuspendLayout();
             this.SuspendLayout();
             // 
             // Shell
@@ -83,6 +90,59 @@ namespace Googlebook
             this.Shell.TabIndex = 0;
             this.Shell.TabStripFont = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shell.Text = "Shell";
+            // 
+            // tabPanelLogin
+            // 
+            this.tabPanelLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.tabPanelLogin.Controls.Add(this.labelX2);
+            this.tabPanelLogin.Controls.Add(this.labelX1);
+            this.tabPanelLogin.Controls.Add(this.step);
+            this.tabPanelLogin.Controls.Add(this.textBoxX2);
+            this.tabPanelLogin.Controls.Add(this.textBoxX1);
+            this.tabPanelLogin.Controls.Add(this.bGoogleLogin);
+            this.tabPanelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
+            this.tabPanelLogin.Name = "tabPanelLogin";
+            this.tabPanelLogin.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.tabPanelLogin.Size = new System.Drawing.Size(624, 343);
+            // 
+            // 
+            // 
+            this.tabPanelLogin.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelLogin.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelLogin.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelLogin.TabIndex = 1;
+            // 
+            // textBoxX1
+            // 
+            this.textBoxX1.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.textBoxX1.Border.Class = "TextBoxBorder";
+            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX1.ForeColor = System.Drawing.Color.Black;
+            this.textBoxX1.Location = new System.Drawing.Point(234, 100);
+            this.textBoxX1.Name = "textBoxX1";
+            this.textBoxX1.Size = new System.Drawing.Size(192, 22);
+            this.textBoxX1.TabIndex = 4;
+            // 
+            // bGoogleLogin
+            // 
+            this.bGoogleLogin.AccessibleRole = System.Windows.Forms.AccessibleRole.PushButton;
+            this.bGoogleLogin.ColorTable = DevComponents.DotNetBar.eButtonColor.OrangeWithBackground;
+            this.bGoogleLogin.Location = new System.Drawing.Point(264, 194);
+            this.bGoogleLogin.Name = "bGoogleLogin";
+            this.bGoogleLogin.Size = new System.Drawing.Size(75, 23);
+            this.bGoogleLogin.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.bGoogleLogin.TabIndex = 0;
+            this.bGoogleLogin.Text = "Login";
             // 
             // tabPanelSync
             // 
@@ -129,28 +189,6 @@ namespace Googlebook
             this.tabPanelLink.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tabPanelLink.TabIndex = 2;
             this.tabPanelLink.Visible = false;
-            // 
-            // tabPanelLogin
-            // 
-            this.tabPanelLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.tabPanelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
-            this.tabPanelLogin.Name = "tabPanelLogin";
-            this.tabPanelLogin.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabPanelLogin.Size = new System.Drawing.Size(624, 343);
-            // 
-            // 
-            // 
-            this.tabPanelLogin.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelLogin.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelLogin.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tabPanelLogin.TabIndex = 1;
             // 
             // tabLogin
             // 
@@ -200,6 +238,54 @@ namespace Googlebook
             this.lbState.Name = "lbState";
             this.lbState.Text = "READY";
             // 
+            // textBoxX2
+            // 
+            this.textBoxX2.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.textBoxX2.Border.Class = "TextBoxBorder";
+            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.textBoxX2.ForeColor = System.Drawing.Color.Black;
+            this.textBoxX2.Location = new System.Drawing.Point(234, 128);
+            this.textBoxX2.Name = "textBoxX2";
+            this.textBoxX2.Size = new System.Drawing.Size(192, 22);
+            this.textBoxX2.TabIndex = 5;
+            // 
+            // step
+            // 
+            this.step.Dock = System.Windows.Forms.DockStyle.Top;
+            this.step.Location = new System.Drawing.Point(3, 0);
+            this.step.Name = "step";
+            this.step.Size = new System.Drawing.Size(618, 4);
+            this.step.StepCount = 3;
+            this.step.TabIndex = 6;
+            this.step.Text = "stepIndicator1";
+            // 
+            // labelX1
+            // 
+            // 
+            // 
+            // 
+            this.labelX1.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX1.Location = new System.Drawing.Point(153, 100);
+            this.labelX1.Name = "labelX1";
+            this.labelX1.Size = new System.Drawing.Size(75, 23);
+            this.labelX1.TabIndex = 7;
+            this.labelX1.Text = "Username";
+            // 
+            // labelX2
+            // 
+            // 
+            // 
+            // 
+            this.labelX2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.labelX2.Location = new System.Drawing.Point(153, 127);
+            this.labelX2.Name = "labelX2";
+            this.labelX2.Size = new System.Drawing.Size(75, 23);
+            this.labelX2.TabIndex = 8;
+            this.labelX2.Text = "Password";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -213,6 +299,7 @@ namespace Googlebook
             this.Text = "Googlebook";
             this.Shell.ResumeLayout(false);
             this.Shell.PerformLayout();
+            this.tabPanelLogin.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -229,6 +316,12 @@ namespace Googlebook
         private DevComponents.DotNetBar.LabelItem lbState;
         private DevComponents.DotNetBar.Metro.MetroTabPanel tabPanelSync;
         private DevComponents.DotNetBar.Metro.MetroTabItem tabSync;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.ButtonX bGoogleLogin;
+        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
+        private DevComponents.DotNetBar.LabelX labelX2;
+        private DevComponents.DotNetBar.LabelX labelX1;
+        private DevComponents.DotNetBar.Controls.StepIndicator step;
 
     }
 }
