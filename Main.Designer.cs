@@ -32,7 +32,7 @@ namespace Googlebook
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Shell = new DevComponents.DotNetBar.Metro.MetroShell();
             this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.textBoxX1 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbUser = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.bGoogleLogin = new DevComponents.DotNetBar.ButtonX();
             this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.tabPanelLink = new DevComponents.DotNetBar.Metro.MetroTabPanel();
@@ -42,7 +42,7 @@ namespace Googlebook
             this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
             this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
             this.lbState = new DevComponents.DotNetBar.LabelItem();
-            this.textBoxX2 = new DevComponents.DotNetBar.Controls.TextBoxX();
+            this.tbPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
             this.labelX1 = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
@@ -97,8 +97,8 @@ namespace Googlebook
             this.tabPanelLogin.Controls.Add(this.labelX2);
             this.tabPanelLogin.Controls.Add(this.labelX1);
             this.tabPanelLogin.Controls.Add(this.step);
-            this.tabPanelLogin.Controls.Add(this.textBoxX2);
-            this.tabPanelLogin.Controls.Add(this.textBoxX1);
+            this.tabPanelLogin.Controls.Add(this.tbPassword);
+            this.tabPanelLogin.Controls.Add(this.tbUser);
             this.tabPanelLogin.Controls.Add(this.bGoogleLogin);
             this.tabPanelLogin.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPanelLogin.Location = new System.Drawing.Point(0, 51);
@@ -119,19 +119,20 @@ namespace Googlebook
             this.tabPanelLogin.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
             this.tabPanelLogin.TabIndex = 1;
             // 
-            // textBoxX1
+            // tbUser
             // 
-            this.textBoxX1.BackColor = System.Drawing.Color.White;
+            this.tbUser.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX1.Border.Class = "TextBoxBorder";
-            this.textBoxX1.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX1.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX1.Location = new System.Drawing.Point(234, 100);
-            this.textBoxX1.Name = "textBoxX1";
-            this.textBoxX1.Size = new System.Drawing.Size(192, 22);
-            this.textBoxX1.TabIndex = 4;
+            this.tbUser.Border.Class = "TextBoxBorder";
+            this.tbUser.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbUser.ForeColor = System.Drawing.Color.Black;
+            this.tbUser.Location = new System.Drawing.Point(234, 100);
+            this.tbUser.MaxLength = 50;
+            this.tbUser.Name = "tbUser";
+            this.tbUser.Size = new System.Drawing.Size(192, 22);
+            this.tbUser.TabIndex = 4;
             // 
             // bGoogleLogin
             // 
@@ -143,6 +144,7 @@ namespace Googlebook
             this.bGoogleLogin.Style = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.bGoogleLogin.TabIndex = 0;
             this.bGoogleLogin.Text = "Login";
+            this.bGoogleLogin.Click += new System.EventHandler(this.bGoogleLogin_Click);
             // 
             // tabPanelSync
             // 
@@ -238,19 +240,21 @@ namespace Googlebook
             this.lbState.Name = "lbState";
             this.lbState.Text = "READY";
             // 
-            // textBoxX2
+            // tbPassword
             // 
-            this.textBoxX2.BackColor = System.Drawing.Color.White;
+            this.tbPassword.BackColor = System.Drawing.Color.White;
             // 
             // 
             // 
-            this.textBoxX2.Border.Class = "TextBoxBorder";
-            this.textBoxX2.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.textBoxX2.ForeColor = System.Drawing.Color.Black;
-            this.textBoxX2.Location = new System.Drawing.Point(234, 128);
-            this.textBoxX2.Name = "textBoxX2";
-            this.textBoxX2.Size = new System.Drawing.Size(192, 22);
-            this.textBoxX2.TabIndex = 5;
+            this.tbPassword.Border.Class = "TextBoxBorder";
+            this.tbPassword.Border.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tbPassword.ForeColor = System.Drawing.Color.Black;
+            this.tbPassword.Location = new System.Drawing.Point(234, 128);
+            this.tbPassword.MaxLength = 50;
+            this.tbPassword.Name = "tbPassword";
+            this.tbPassword.Size = new System.Drawing.Size(192, 22);
+            this.tbPassword.TabIndex = 5;
+            this.tbPassword.UseSystemPasswordChar = true;
             // 
             // step
             // 
@@ -316,9 +320,9 @@ namespace Googlebook
         private DevComponents.DotNetBar.LabelItem lbState;
         private DevComponents.DotNetBar.Metro.MetroTabPanel tabPanelSync;
         private DevComponents.DotNetBar.Metro.MetroTabItem tabSync;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX1;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbUser;
         private DevComponents.DotNetBar.ButtonX bGoogleLogin;
-        private DevComponents.DotNetBar.Controls.TextBoxX textBoxX2;
+        private DevComponents.DotNetBar.Controls.TextBoxX tbPassword;
         private DevComponents.DotNetBar.LabelX labelX2;
         private DevComponents.DotNetBar.LabelX labelX1;
         private DevComponents.DotNetBar.Controls.StepIndicator step;
