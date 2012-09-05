@@ -148,6 +148,15 @@ namespace Googlebook
             }
         }
 
+		private void SetDefaultTile(MetroTileItem tile)
+		{
+			tile.TileStyle.TextLineAlignment = eStyleTextAlignment.Near;
+			tile.TileStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+			tile.TitleTextFont = new Font("Segoe UI", 15, FontStyle.Bold);
+			tile.Style = eDotNetBarStyle.Metro;
+			tile.TileColor = eMetroTileColor.Azure;
+		}
+
 		private bool HasUnlinkedContacts()
 		{
 			pUnlinkedContacts.Items.Clear();
@@ -157,19 +166,15 @@ namespace Googlebook
 				var entry = contact.ContactEntry;
 				var tile = new MetroTileItem
 					           {
-						           Style = eDotNetBarStyle.Metro,
-						           TileColor = eMetroTileColor.Azure,
 						           Text =	((entry.Phonenumbers.Count > 0) ? entry.Phonenumbers[0].Value : "") + "\n" +
 											entry.Birthday + "\n" +
 											((entry.Emails.Count > 0) ? entry.Emails[0].Address : ""),
 						           TitleText = entry.Name.FullName,
-						           Name = "tile" + entry.Name.FamilyName,
-						           TitleTextFont = new Font("Segoe UI", 15, FontStyle.Bold)
+						           Name = "tile" + entry.Name.FamilyName
 					           };
-				tile.TileStyle.TextLineAlignment = eStyleTextAlignment.Near;
-				tile.TileStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
 				tile.SetOwner(contact);
 				tile.Click += TileOnClick;
+				SetDefaultTile(tile);
 
 				pUnlinkedContacts.Items.Add(tile);
 			}
@@ -185,8 +190,30 @@ namespace Googlebook
 			if (metroTileItem != null)
 			{
 				var contact = metroTileItem.GetOwner() as Contact;
+				if(contact == null)
+					return;
 
+				pSuggestions.Items.Clear();
 				SetStatusText(contact.ContactEntry.Name.FullName);
+				var suggestions = _cm.GetFacebookContactSuggestion(contact.ContactEntry.Name);
+				foreach (var suggestion in suggestions)
+				{
+					var tile = new MetroTileItem
+					{
+						Text = suggestion.name,
+						Name = "tile" + suggestion.name
+					};
+					tile.SetOwner(suggestion);
+					//tile.Click += TileOnClick;
+					SetDefaultTile(tile);
+					tile.TileStyle.TextLineAlignment = eStyleTextAlignment.Center;
+					tile.TileStyle.Font = new Font("Segoe UI", 16, FontStyle.Bold);
+					
+
+					pSuggestions.Items.Add(tile);
+				}
+				pSuggestions.Refresh();
+				
 			}
 		}
 

@@ -42,6 +42,47 @@ namespace Googlebook
             }
         }
 
+		public List<dynamic> GetFacebookContacts()
+		{
+			dynamic data = _facebook.Get("me/friends");
+			var list = new List<dynamic>(data.data);
+			return list;
+		}
+
+		public List<dynamic> GetFacebookContactSuggestion(Google.GData.Extensions.Name gName)
+		{
+			var list = GetFacebookContacts();
+			var suggestions = new List<dynamic>();
+
+			// Try to find on both parts
+			foreach (dynamic user in list)
+			{
+				var name = (user.name as string);
+				if (name == null)
+					continue;
+
+				if (name.IndexOf(gName.GivenName, StringComparison.Ordinal) > -1 && name.IndexOf(gName.FamilyName, StringComparison.Ordinal) > -1)
+					suggestions.Add(user);
+			}
+
+			// If nothing found try more general search
+			if(suggestions.Count <= 0)
+			{
+				suggestions.Clear();
+				foreach (dynamic user in list)
+				{
+					var name = (user.name as string);
+					if (name == null)
+						continue;
+
+					if ((gName.FamilyName != null && name.IndexOf(gName.FamilyName, StringComparison.Ordinal) > -1) || name.IndexOf(gName.GivenName, StringComparison.Ordinal) > -1)
+						suggestions.Add(user);
+				}
+			}
+
+			return suggestions;
+		}
+
         public List<Contact> GetGoogleContacts(bool filter = false)
         {
             if(_google == null)

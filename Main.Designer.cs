@@ -32,7 +32,7 @@ namespace Googlebook
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
 			this.Shell = new DevComponents.DotNetBar.Metro.MetroShell();
 			this.tabPanelLink = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-			this.itemPanel2 = new DevComponents.DotNetBar.ItemPanel();
+			this.pSuggestions = new DevComponents.DotNetBar.ItemPanel();
 			this.pUnlinkedContacts = new DevComponents.DotNetBar.ItemPanel();
 			this.metroTileItem1 = new DevComponents.DotNetBar.Metro.MetroTileItem();
 			this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
@@ -106,7 +106,7 @@ namespace Googlebook
 			// tabPanelLink
 			// 
 			this.tabPanelLink.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-			this.tabPanelLink.Controls.Add(this.itemPanel2);
+			this.tabPanelLink.Controls.Add(this.pSuggestions);
 			this.tabPanelLink.Controls.Add(this.pUnlinkedContacts);
 			this.tabPanelLink.Dock = System.Windows.Forms.DockStyle.Fill;
 			this.tabPanelLink.Location = new System.Drawing.Point(0, 51);
@@ -127,23 +127,24 @@ namespace Googlebook
 			this.tabPanelLink.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
 			this.tabPanelLink.TabIndex = 2;
 			// 
-			// itemPanel2
+			// pSuggestions
 			// 
-			this.itemPanel2.BackColor = System.Drawing.Color.White;
+			this.pSuggestions.AutoScroll = true;
+			this.pSuggestions.BackColor = System.Drawing.Color.White;
 			// 
 			// 
 			// 
-			this.itemPanel2.BackgroundStyle.Class = "ItemPanel";
-			this.itemPanel2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-			this.itemPanel2.ContainerControlProcessDialogKey = true;
-			this.itemPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-			this.itemPanel2.ForeColor = System.Drawing.Color.Black;
-			this.itemPanel2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
-			this.itemPanel2.Location = new System.Drawing.Point(284, 0);
-			this.itemPanel2.Name = "itemPanel2";
-			this.itemPanel2.Size = new System.Drawing.Size(596, 385);
-			this.itemPanel2.TabIndex = 1;
-			this.itemPanel2.Text = "itemPanel2";
+			this.pSuggestions.BackgroundStyle.Class = "ItemPanel";
+			this.pSuggestions.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+			this.pSuggestions.ContainerControlProcessDialogKey = true;
+			this.pSuggestions.Dock = System.Windows.Forms.DockStyle.Fill;
+			this.pSuggestions.ForeColor = System.Drawing.Color.Black;
+			this.pSuggestions.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+			this.pSuggestions.Location = new System.Drawing.Point(284, 0);
+			this.pSuggestions.Name = "pSuggestions";
+			this.pSuggestions.Size = new System.Drawing.Size(596, 385);
+			this.pSuggestions.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+			this.pSuggestions.TabIndex = 1;
 			// 
 			// pUnlinkedContacts
 			// 
@@ -503,7 +504,7 @@ namespace Googlebook
         private DevComponents.DotNetBar.Controls.TextBoxX tbUser;
         private DevComponents.DotNetBar.ButtonX bGoogleLogin;
         private DevComponents.DotNetBar.ItemPanel pUnlinkedContacts;
-        private DevComponents.DotNetBar.ItemPanel itemPanel2;
+        private DevComponents.DotNetBar.ItemPanel pSuggestions;
 		private DevComponents.DotNetBar.LabelX lbLoginComplete;
 		private DevComponents.DotNetBar.Metro.MetroTileItem metroTileItem1;
 
