@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using Facebook;
@@ -71,6 +72,19 @@ namespace Googlebook
         {
             return System.String.CompareOrdinal(a.ContactEntry.Name.FullName, b.ContactEntry.Name.FullName);
         }
+
+		public Stream GetGooglePhoto(Contact c)
+		{
+			try
+			{
+				return _google.GetPhoto(c);
+			}
+			catch (Exception)
+			{
+				return null;
+			}
+			
+		}
 
         public List<Contact> GetGoogleUnlinkedContacts()
         {

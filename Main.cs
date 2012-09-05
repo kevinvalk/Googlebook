@@ -4,8 +4,11 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
+using DevComponents.DotNetBar;
+using DevComponents.DotNetBar.Metro;
 using Google.Contacts;
 using Google.GData.Client;
 using Google.GData.Contacts;
@@ -72,6 +75,7 @@ namespace Googlebook
                     pGoogleLogin.Hide();
 		            lbLoginComplete.Show();
 					lbLoginComplete.BringToFront();
+		            SetStatusText("Logged in");
 
 					// Check for unlinked contacts
 					if (HasUnlinkedContacts())
@@ -93,17 +97,23 @@ namespace Googlebook
 
             if(_cm.LoginGoogle(tbUser.Text, tbPassword.Text))
             {
-                lbState.Text = "SUCCESS";
+                SetStatusText("SUCCESS");
                 LoginStep(State.FacebookLogin);
                 _settings.googleAuto = true;
                 _settings.Save();
             }
             else
             {
-                lbState.Text = "FAILED";
+                SetStatusText("FAILED");
             }
             status.Refresh();
         }
+
+		private void SetStatusText(string txt)
+		{
+			lbState.Text = txt;
+			status.Refresh();
+		}
 
         private void browser_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
         {
@@ -144,15 +154,50 @@ namespace Googlebook
 			var contacts = _cm.GetGoogleUnlinkedContacts();
 			foreach (var contact in contacts)
 			{
-				pUnlinkedContacts.AddItem(contact.ContactEntry.Name.FullName);
+				var entry = contact.ContactEntry;
+				var tile = new MetroTileItem
+					           {
+						           Style = eDotNetBarStyle.Metro,
+						           TileColor = eMetroTileColor.Azure,
+						           Text =	((entry.Phonenumbers.Count > 0) ? entry.Phonenumbers[0].Value : "") + "\n" +
+											entry.Birthday + "\n" +
+											((entry.Emails.Count > 0) ? entry.Emails[0].Address : ""),
+						           TitleText = entry.Name.FullName,
+						           Name = "tile" + entry.Name.FamilyName,
+						           TitleTextFont = new Font("Segoe UI", 15, FontStyle.Bold)
+					           };
+				tile.TileStyle.TextLineAlignment = eStyleTextAlignment.Near;
+				tile.TileStyle.Font = new Font("Segoe UI", 9, FontStyle.Regular);
+				tile.SetOwner(contact);
+				tile.Click += TileOnClick;
+
+				pUnlinkedContacts.Items.Add(tile);
 			}
 			return (contacts.Count > 0);
 		}
 
-        // Events
+
+
+	    // Events
+		private void TileOnClick(object sender, EventArgs eventArgs)
+		{
+			var metroTileItem = sender as MetroTileItem;
+			if (metroTileItem != null)
+			{
+				var contact = metroTileItem.GetOwner() as Contact;
+
+				SetStatusText(contact.ContactEntry.Name.FullName);
+			}
+		}
+
         private void TabLinkClick(object sender, EventArgs e)
         {
 	        HasUnlinkedContacts();
         }
+
+		private void PUnlinkedContactsMouseEnter(object sender, EventArgs e)
+		{
+			pUnlinkedContacts.Focus();
+		}
     }
 }
