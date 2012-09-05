@@ -43,6 +43,10 @@ namespace Googlebook
 
         public bool loginFacebook(string token, int ttl)
         {
+            dynamic extendedToken = facebook.Get(Config.facebookExtendedToken + token);
+            facebook = new FacebookClient(extendedToken.access_token);
+            facebook.AppId = Config.appId;
+            facebook.AppSecret = Config.appSecret;
 
             return true;
         }

@@ -19,7 +19,9 @@ namespace Googlebook
 
         public Main()
         {
+            // Initialize form and do some custom changes
             InitializeComponent();
+            browser.BringToFront();
 
             // Load the settings
             tbUser.Text = settings.googleUser;
@@ -52,7 +54,7 @@ namespace Googlebook
         }
 
 
-        private void bGoogleLogin_Click(object sender, EventArgs e)
+        private void BGoogleLoginClick(object sender, EventArgs e)
         {
             // Save the settings
             settings.googleUser = tbUser.Text;
