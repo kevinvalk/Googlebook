@@ -46,5 +46,17 @@ namespace Googlebook.Properties {
                 this["googlePass"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool googleAuto {
+            get {
+                return ((bool)(this["googleAuto"]));
+            }
+            set {
+                this["googleAuto"] = value;
+            }
+        }
     }
 }

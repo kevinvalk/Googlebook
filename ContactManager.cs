@@ -5,6 +5,7 @@ using System.Text;
 using Facebook;
 using Google.Contacts;
 using Google.GData.Client;
+using Google.GData.Contacts;
 
 namespace Googlebook
 {
@@ -19,10 +20,10 @@ namespace Googlebook
             facebook = new FacebookClient();
 
             // Defaults
-            isGoogleLogin = false;
+            IsGoogleLogin = false;
         }
 
-        public bool loginGoogle(string user, string password)
+        public bool LoginGoogle(string user, string password)
         {
             try
             {
@@ -31,9 +32,9 @@ namespace Googlebook
                 settings.AutoPaging = true;
                 google = new ContactsRequest(settings);
 
-                isGoogleLogin = (google.GetContacts().PageSize > 0);
+                IsGoogleLogin = (google.GetContacts().PageSize > 0);
 
-                return isGoogleLogin;
+                return IsGoogleLogin;
             }
             catch (Exception e)
             {
@@ -41,22 +42,58 @@ namespace Googlebook
             }
         }
 
-        public bool loginFacebook(string token, int ttl)
+        public List<Contact> GetGoogleContacts(bool filter = false)
+        {
+            if(google == null)
+                return new List<Contact>();
+
+            var feed = google.GetContacts();
+            feed.Maximum = maxNo;
+
+            var filtered = new List<Contact>();
+
+            foreach (Contact contact in feed.Entries)
+            {
+                if(!filter)
+                {
+                    filtered.Add(contact);
+                    continue;
+                }
+
+                if (!HasFbKey(contact))
+                    filtered.Add(contact);
+            }
+
+            filtered.Sort(ContactComparison);
+            return filtered;
+        }
+
+        private static int ContactComparison(Contact a, Contact b)
+        {
+            return System.String.CompareOrdinal(a.ContactEntry.Name.FullName, b.ContactEntry.Name.FullName);
+        }
+
+        public List<Contact> GetGoogleUnlinkedContacts()
+        {
+            return GetGoogleContacts(true);
+        }
+
+        private bool HasFbKey(Contact contact)
+        {
+            foreach (UserDefinedField f in contact.ContactEntry.UserDefinedFields)
+                if (f.Key == Config.googleFbField)
+                    return true;
+            return false;
+        }
+
+        public bool LoginFacebook(string token, int ttl)
         {
             dynamic extendedToken = facebook.Get(Config.facebookExtendedToken + token);
-            facebook = new FacebookClient(extendedToken.access_token);
-            facebook.AppId = Config.appId;
-            facebook.AppSecret = Config.appSecret;
-
+            facebook = new FacebookClient(extendedToken.access_token){AppId = Config.appId, AppSecret = Config.appSecret};
             return true;
         }
 
         // Properties
-        private bool isGoogleLogin;
-
-        public bool IsGoogleLogin
-        {
-            get { return isGoogleLogin; }
-        }
+        public bool IsGoogleLogin { get; private set; }
     }
 }

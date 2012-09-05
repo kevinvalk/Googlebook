@@ -6,6 +6,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
+using Google.Contacts;
+using Google.GData.Client;
+using Google.GData.Contacts;
 
 namespace Googlebook
 {
@@ -28,7 +31,11 @@ namespace Googlebook
             tbPassword.Text = settings.googlePass;
 
             // Call default
-            LoginStep(State.GOOGLE_LOGIN);
+            LoginStep(State.GoogleLogin);
+
+            // Do automating
+            if (settings.googleAuto)
+                BGoogleLoginClick(null, null);
         }
 
         private void LoginStep(State state)
@@ -40,19 +47,18 @@ namespace Googlebook
             step.CurrentStep = (int)state;
             switch(state)
             {
-                case State.GOOGLE_LOGIN:
+                case State.GoogleLogin:
                     break;
-                case State.FACEBOOK_LOGIN:
+                case State.FacebookLogin:
                     browser.Visible = true;
                     browser.Navigate(Config.facebookLoginUrl);
                     modLogin = true;
                     break;
-                case State.LOGIN_DONE:
+                case State.LoginDone:
 
                     break;
             }
         }
-
 
         private void BGoogleLoginClick(object sender, EventArgs e)
         {
@@ -62,10 +68,12 @@ namespace Googlebook
             settings.Save();
 
 
-            if(cm.loginGoogle(tbUser.Text, tbPassword.Text))
+            if(cm.LoginGoogle(tbUser.Text, tbPassword.Text))
             {
                 lbState.Text = "SUCCESS";
-                LoginStep(State.FACEBOOK_LOGIN);
+                LoginStep(State.FacebookLogin);
+                settings.googleAuto = true;
+                settings.Save();
             }
             else
             {
@@ -95,14 +103,24 @@ namespace Googlebook
                 Debug.Assert(query.Length == 3);
                 if (int.TryParse(query[2], out timeToLive))
                 {
-                    cm.loginFacebook(query[1], timeToLive);
-                    LoginStep(State.LOGIN_DONE);
+                    cm.LoginFacebook(query[1], timeToLive);
+                    LoginStep(State.LoginDone);
                 }
                 else
                 {
-                    LoginStep(State.FACEBOOK_LOGIN);    
+                    LoginStep(State.FacebookLogin);    
                 }
                 return;
+            }
+        }
+
+        // Events
+        private void TabLinkClick(object sender, EventArgs e)
+        {
+            var contacts = cm.GetGoogleUnlinkedContacts();
+            foreach (var contact in contacts)
+            {
+                pUnlinkedContacts.AddItem(contact.ContactEntry.Name.FullName);
             }
         }
     }

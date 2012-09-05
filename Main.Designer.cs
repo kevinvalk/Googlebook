@@ -31,17 +31,10 @@ namespace Googlebook
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.Shell = new DevComponents.DotNetBar.Metro.MetroShell();
-            this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.browser = new System.Windows.Forms.WebBrowser();
-            this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
-            this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.tabPanelLink = new DevComponents.DotNetBar.Metro.MetroTabPanel();
-            this.tabLogin = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.tabLink = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.tabSync = new DevComponents.DotNetBar.Metro.MetroTabItem();
-            this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
-            this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
-            this.lbState = new DevComponents.DotNetBar.LabelItem();
+            this.itemPanel2 = new DevComponents.DotNetBar.ItemPanel();
+            this.pUnlinkedContacts = new DevComponents.DotNetBar.ItemPanel();
+            this.tabPanelLogin = new DevComponents.DotNetBar.Metro.MetroTabPanel();
             this.pGoogleLogin = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.lHeader = new DevComponents.DotNetBar.LabelX();
             this.labelX2 = new DevComponents.DotNetBar.LabelX();
@@ -49,7 +42,17 @@ namespace Googlebook
             this.tbPassword = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.tbUser = new DevComponents.DotNetBar.Controls.TextBoxX();
             this.bGoogleLogin = new DevComponents.DotNetBar.ButtonX();
+            this.step = new DevComponents.DotNetBar.Controls.StepIndicator();
+            this.browser = new System.Windows.Forms.WebBrowser();
+            this.tabPanelSync = new DevComponents.DotNetBar.Metro.MetroTabPanel();
+            this.tabLogin = new DevComponents.DotNetBar.Metro.MetroTabItem();
+            this.tabLink = new DevComponents.DotNetBar.Metro.MetroTabItem();
+            this.tabSync = new DevComponents.DotNetBar.Metro.MetroTabItem();
+            this.Style = new DevComponents.DotNetBar.StyleManager(this.components);
+            this.status = new DevComponents.DotNetBar.Metro.MetroStatusBar();
+            this.lbState = new DevComponents.DotNetBar.LabelItem();
             this.Shell.SuspendLayout();
+            this.tabPanelLink.SuspendLayout();
             this.tabPanelLogin.SuspendLayout();
             this.pGoogleLogin.SuspendLayout();
             this.SuspendLayout();
@@ -95,6 +98,69 @@ namespace Googlebook
             this.Shell.TabStripFont = new System.Drawing.Font("Segoe UI", 10.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Shell.Text = "Shell";
             // 
+            // tabPanelLink
+            // 
+            this.tabPanelLink.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.tabPanelLink.Controls.Add(this.itemPanel2);
+            this.tabPanelLink.Controls.Add(this.pUnlinkedContacts);
+            this.tabPanelLink.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPanelLink.Location = new System.Drawing.Point(0, 51);
+            this.tabPanelLink.Name = "tabPanelLink";
+            this.tabPanelLink.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.tabPanelLink.Size = new System.Drawing.Size(883, 409);
+            // 
+            // 
+            // 
+            this.tabPanelLink.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelLink.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelLink.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelLink.TabIndex = 2;
+            // 
+            // itemPanel2
+            // 
+            this.itemPanel2.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.itemPanel2.BackgroundStyle.Class = "ItemPanel";
+            this.itemPanel2.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.itemPanel2.ContainerControlProcessDialogKey = true;
+            this.itemPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.itemPanel2.ForeColor = System.Drawing.Color.Black;
+            this.itemPanel2.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.itemPanel2.Location = new System.Drawing.Point(322, 0);
+            this.itemPanel2.Name = "itemPanel2";
+            this.itemPanel2.Size = new System.Drawing.Size(558, 406);
+            this.itemPanel2.TabIndex = 1;
+            this.itemPanel2.Text = "itemPanel2";
+            // 
+            // pUnlinkedContacts
+            // 
+            this.pUnlinkedContacts.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.pUnlinkedContacts.BackgroundStyle.Class = "ItemPanel";
+            this.pUnlinkedContacts.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.pUnlinkedContacts.ContainerControlProcessDialogKey = true;
+            this.pUnlinkedContacts.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pUnlinkedContacts.FitButtonsToContainerWidth = true;
+            this.pUnlinkedContacts.ForeColor = System.Drawing.Color.Black;
+            this.pUnlinkedContacts.LayoutOrientation = DevComponents.DotNetBar.eOrientation.Vertical;
+            this.pUnlinkedContacts.Location = new System.Drawing.Point(3, 0);
+            this.pUnlinkedContacts.Name = "pUnlinkedContacts";
+            this.pUnlinkedContacts.Size = new System.Drawing.Size(319, 406);
+            this.pUnlinkedContacts.Style = DevComponents.DotNetBar.eDotNetBarStyle.Metro;
+            this.pUnlinkedContacts.TabIndex = 0;
+            this.pUnlinkedContacts.Text = "itemPanel1";
+            this.pUnlinkedContacts.ThemeAware = true;
+            // 
             // tabPanelLogin
             // 
             this.tabPanelLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
@@ -121,130 +187,12 @@ namespace Googlebook
             this.tabPanelLogin.TabIndex = 1;
             this.tabPanelLogin.Visible = false;
             // 
-            // browser
-            // 
-            this.browser.AllowWebBrowserDrop = false;
-            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.browser.IsWebBrowserContextMenuEnabled = false;
-            this.browser.Location = new System.Drawing.Point(3, 0);
-            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
-            this.browser.Name = "browser";
-            this.browser.ScrollBarsEnabled = false;
-            this.browser.Size = new System.Drawing.Size(877, 406);
-            this.browser.TabIndex = 10;
-            this.browser.Visible = false;
-            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
-            // 
-            // step
-            // 
-            this.step.Dock = System.Windows.Forms.DockStyle.Top;
-            this.step.Location = new System.Drawing.Point(3, 0);
-            this.step.Name = "step";
-            this.step.Size = new System.Drawing.Size(877, 4);
-            this.step.StepCount = 3;
-            this.step.TabIndex = 6;
-            // 
-            // tabPanelSync
-            // 
-            this.tabPanelSync.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.tabPanelSync.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPanelSync.Location = new System.Drawing.Point(0, 51);
-            this.tabPanelSync.Name = "tabPanelSync";
-            this.tabPanelSync.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabPanelSync.Size = new System.Drawing.Size(624, 343);
-            // 
-            // 
-            // 
-            this.tabPanelSync.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelSync.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelSync.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tabPanelSync.TabIndex = 3;
-            this.tabPanelSync.Visible = false;
-            // 
-            // tabPanelLink
-            // 
-            this.tabPanelLink.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
-            this.tabPanelLink.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPanelLink.Location = new System.Drawing.Point(0, 51);
-            this.tabPanelLink.Name = "tabPanelLink";
-            this.tabPanelLink.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
-            this.tabPanelLink.Size = new System.Drawing.Size(883, 409);
-            // 
-            // 
-            // 
-            this.tabPanelLink.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelLink.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            // 
-            // 
-            // 
-            this.tabPanelLink.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.tabPanelLink.TabIndex = 2;
-            // 
-            // tabLogin
-            // 
-            this.tabLogin.Name = "tabLogin";
-            this.tabLogin.Panel = this.tabPanelLogin;
-            this.tabLogin.Text = "&LOGIN";
-            // 
-            // tabLink
-            // 
-            this.tabLink.Checked = true;
-            this.tabLink.Name = "tabLink";
-            this.tabLink.Panel = this.tabPanelLink;
-            this.tabLink.Text = "&LINK";
-            // 
-            // tabSync
-            // 
-            this.tabSync.Name = "tabSync";
-            this.tabSync.Panel = this.tabPanelSync;
-            this.tabSync.Text = "&SYNC";
-            // 
-            // Style
-            // 
-            this.Style.ManagerColorTint = System.Drawing.Color.White;
-            this.Style.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
-            this.Style.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(185)))), ((int)(((byte)(238))))));
-            // 
-            // status
-            // 
-            this.status.BackColor = System.Drawing.Color.White;
-            // 
-            // 
-            // 
-            this.status.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
-            this.status.ContainerControlProcessDialogKey = true;
-            this.status.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.status.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.status.ForeColor = System.Drawing.Color.Black;
-            this.status.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
-            this.lbState});
-            this.status.Location = new System.Drawing.Point(0, 440);
-            this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(883, 21);
-            this.status.TabIndex = 1;
-            this.status.Text = "Status";
-            // 
-            // lbState
-            // 
-            this.lbState.Name = "lbState";
-            this.lbState.Text = "READY";
-            // 
             // pGoogleLogin
             // 
             this.pGoogleLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pGoogleLogin.BackColor = System.Drawing.Color.White;
-            this.pGoogleLogin.CanvasColor = System.Drawing.SystemColors.Control;
             this.pGoogleLogin.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
             this.pGoogleLogin.Controls.Add(this.lHeader);
             this.pGoogleLogin.Controls.Add(this.labelX2);
@@ -380,6 +328,102 @@ namespace Googlebook
             this.bGoogleLogin.Text = "Login";
             this.bGoogleLogin.Click += new System.EventHandler(this.BGoogleLoginClick);
             // 
+            // step
+            // 
+            this.step.Dock = System.Windows.Forms.DockStyle.Top;
+            this.step.Location = new System.Drawing.Point(3, 0);
+            this.step.Name = "step";
+            this.step.Size = new System.Drawing.Size(877, 4);
+            this.step.StepCount = 3;
+            this.step.TabIndex = 6;
+            // 
+            // browser
+            // 
+            this.browser.AllowWebBrowserDrop = false;
+            this.browser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.browser.IsWebBrowserContextMenuEnabled = false;
+            this.browser.Location = new System.Drawing.Point(3, 0);
+            this.browser.MinimumSize = new System.Drawing.Size(20, 20);
+            this.browser.Name = "browser";
+            this.browser.ScrollBarsEnabled = false;
+            this.browser.Size = new System.Drawing.Size(877, 406);
+            this.browser.TabIndex = 10;
+            this.browser.Visible = false;
+            this.browser.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.browser_DocumentCompleted);
+            // 
+            // tabPanelSync
+            // 
+            this.tabPanelSync.ColorSchemeStyle = DevComponents.DotNetBar.eDotNetBarStyle.StyleManagerControlled;
+            this.tabPanelSync.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPanelSync.Location = new System.Drawing.Point(0, 51);
+            this.tabPanelSync.Name = "tabPanelSync";
+            this.tabPanelSync.Padding = new System.Windows.Forms.Padding(3, 0, 3, 3);
+            this.tabPanelSync.Size = new System.Drawing.Size(883, 409);
+            // 
+            // 
+            // 
+            this.tabPanelSync.Style.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelSync.StyleMouseDown.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            // 
+            // 
+            // 
+            this.tabPanelSync.StyleMouseOver.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.tabPanelSync.TabIndex = 3;
+            this.tabPanelSync.Visible = false;
+            // 
+            // tabLogin
+            // 
+            this.tabLogin.Name = "tabLogin";
+            this.tabLogin.Panel = this.tabPanelLogin;
+            this.tabLogin.Text = "&LOGIN";
+            // 
+            // tabLink
+            // 
+            this.tabLink.Checked = true;
+            this.tabLink.Name = "tabLink";
+            this.tabLink.Panel = this.tabPanelLink;
+            this.tabLink.Text = "L&INK";
+            this.tabLink.Click += new System.EventHandler(this.TabLinkClick);
+            // 
+            // tabSync
+            // 
+            this.tabSync.Name = "tabSync";
+            this.tabSync.Panel = this.tabPanelSync;
+            this.tabSync.Text = "&SYNC";
+            // 
+            // Style
+            // 
+            this.Style.ManagerColorTint = System.Drawing.Color.White;
+            this.Style.ManagerStyle = DevComponents.DotNetBar.eStyle.Metro;
+            this.Style.MetroColorParameters = new DevComponents.DotNetBar.Metro.ColorTables.MetroColorGeneratorParameters(System.Drawing.Color.White, System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(185)))), ((int)(((byte)(238))))));
+            // 
+            // status
+            // 
+            this.status.BackColor = System.Drawing.Color.White;
+            // 
+            // 
+            // 
+            this.status.BackgroundStyle.CornerType = DevComponents.DotNetBar.eCornerType.Square;
+            this.status.ContainerControlProcessDialogKey = true;
+            this.status.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.status.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.status.ForeColor = System.Drawing.Color.Black;
+            this.status.Items.AddRange(new DevComponents.DotNetBar.BaseItem[] {
+            this.lbState});
+            this.status.Location = new System.Drawing.Point(0, 440);
+            this.status.Name = "status";
+            this.status.Size = new System.Drawing.Size(883, 21);
+            this.status.TabIndex = 1;
+            this.status.Text = "Status";
+            // 
+            // lbState
+            // 
+            this.lbState.Name = "lbState";
+            this.lbState.Text = "READY";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -394,6 +438,7 @@ namespace Googlebook
             this.Text = "Googlebook";
             this.Shell.ResumeLayout(false);
             this.Shell.PerformLayout();
+            this.tabPanelLink.ResumeLayout(false);
             this.tabPanelLogin.ResumeLayout(false);
             this.pGoogleLogin.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -421,6 +466,8 @@ namespace Googlebook
         private DevComponents.DotNetBar.Controls.TextBoxX tbPassword;
         private DevComponents.DotNetBar.Controls.TextBoxX tbUser;
         private DevComponents.DotNetBar.ButtonX bGoogleLogin;
+        private DevComponents.DotNetBar.ItemPanel pUnlinkedContacts;
+        private DevComponents.DotNetBar.ItemPanel itemPanel2;
 
     }
 }
